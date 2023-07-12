@@ -11,3 +11,29 @@ CREATE TABLE animals (
 
 ALTER TABLE animals
 ADD COLUMN species VARCHAR(20);
+
+CREATE TABLE owners (
+    id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    full_name VARCHAR(50),
+    age INT
+)
+
+CREATE TABLE species (
+    id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    name VARCHAR(50)
+)
+
+ALTER TABLE animals
+DROP COLUMN species; 
+SELECT * FROM animals;
+
+ALTER TABLE animals
+ADD COLUMN species_id int,
+ADD COLUMN owner_id int;
+SELECT * FROM animals
+
+ALTER TABLE animals
+ADD FOREIGN KEY(species_id)
+REFERENCES species(id),
+ADD FOREIGN KEY(owner_id)
+REFERENCES owners(id);
